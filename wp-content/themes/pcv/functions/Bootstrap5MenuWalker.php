@@ -75,6 +75,3 @@ class Bootstrap5MenuWalker extends \Walker_Nav_menu {
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 	}
 }
-
-// register a new menu
-register_nav_menu( 'main-menu', 'Main menu' );

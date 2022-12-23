@@ -2,12 +2,14 @@
 
 namespace App;
 
-class PCV_Product {
+class PCVProduct {
 
 	private \WP_Post $product;
+	private array $websites;
 
 	function __construct( \WP_Post $product ) {
-		$this->product = $product;
+		$this->product  = $product;
+		$this->websites = get_field( 'websites', 'option' );
 	}
 
 	function get_offers() {
@@ -71,14 +73,9 @@ class PCV_Product {
 
 		$data = [];
 
-		$min_date = $this->get_product_price_history_min_date();
+		$date = ( new \DateTime( 'now', new \DateTimeZone( 'Europe/Paris' ) ) )->modify( '-60 days' );
 
-		if ( empty( $min_date ) ) {
-			return $data;
-		}
-
-		$date = new \DateTime( ( new \DateTime( $min_date ) )->format( 'Y-m-d' ), new \DateTimeZone( 'Europe/Paris' ) );
-		$now  = new \DateTime( 'now', new \DateTimeZone( 'Europe/Paris' ) );
+		$now = new \DateTime( 'now', new \DateTimeZone( 'Europe/Paris' ) );
 
 		$i = 0;
 		while ( $date < $now ) {
@@ -98,6 +95,17 @@ class PCV_Product {
 		}
 
 		return min( $values );
+	}
+
+	public function get_website( $domain ) {
+
+		foreach ( $this->websites as $website ) {
+			if ( $website['domain'] === $domain ) {
+				return $website;
+			}
+		}
+
+		return false;
 	}
 
 	private function get_day_min_price( $price_history, \DateTime $date ) {

@@ -1,2 +1,4 @@
 /wp-content/uploads
 wp-config.php
+/wp-content/themes/pcv/vendor
+/wp-content/themes/pcv/node_modules

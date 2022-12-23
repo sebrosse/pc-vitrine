@@ -3,7 +3,7 @@ var sass = require('gulp-sass')(require('sass'));
 var uglify = require('gulp-uglify');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
-var striplog = require('gulp-strip-debug');
+//var striplog = require('gulp-strip-debug');
 var minfycss = require('gulp-minify-css');
 var gutil = require('gulp-util');
 
@@ -32,8 +32,8 @@ gulpfile.task('scripts', function () {
 
 // My css files
 gulpfile.task('styles', function () {
-    var css_src = 'assets/scss/*.scss';
-    var css_dest = 'dist/css';
+    var css_src = 'assets/scss/style.scss';
+    var css_dest = 'assets/dist/css';
 
     // Concat and minify all the css
     return gulpfile.src(css_src)
@@ -51,6 +51,6 @@ gulpfile.task('clean', function () {
 });
 
 gulpfile.task('watch', function () {
-    gulpfile.watch('assets/scss/*.scss', gulpfile.series('styles'));
-    gulpfile.watch('assets/js/*.js', gulpfile.series('scripts'));
+    gulpfile.watch('assets/scss/*/*.scss', gulpfile.series('styles'));
+    //gulpfile.watch('assets/js/*.js', gulpfile.series('scripts'));
 });

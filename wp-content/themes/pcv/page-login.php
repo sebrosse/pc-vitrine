@@ -37,12 +37,14 @@ if ( isset( $_POST['submit-login'] ) && wp_verify_nonce( $_POST['_nonce'], 'user
         <div class="signin-header">
             <div class="row align-items-center">
                 <div class="col-sm-4">
-                    <a href="index.html" class="site-logo"><img src="./assets/images/logo/logo.png" alt="logo"></a>
+                    <a href="/" class="site-logo">
+                        <img src="<?php the_field('logo','option');?>" alt="logo">
+                    </a>
                 </div>
                 <div class="col-sm-8">
                     <div class="singin-header-btn">
-                        <p>Not a member?</p>
-                        <a href="sign-up.html" class="axil-btn btn-bg-secondary sign-up-btn">Sign Up Now</a>
+                        <p>Pas de compte?</p>
+                        <a href="/register" class="axil-btn btn-bg-secondary sign-up-btn">Créer un compte</a>
                     </div>
                 </div>
             </div>
@@ -50,11 +52,7 @@ if ( isset( $_POST['submit-login'] ) && wp_verify_nonce( $_POST['_nonce'], 'user
         <!-- End Header -->
 
         <div class="row">
-            <div class="col-xl-4 col-lg-6">
-                <div class="axil-signin-banner bg_image bg_image--9">
-                    <h3 class="title">We Offer the Best Products</h3>
-                </div>
-            </div>
+        <?php get_template_part('template-parts/login/login-sidebar');?>
             <div class="col-lg-6 offset-xl-2">
                 <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">

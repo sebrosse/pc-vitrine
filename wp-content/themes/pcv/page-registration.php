@@ -19,18 +19,24 @@ if ( isset( $_POST['submit-registration'] ) && wp_verify_nonce( $_POST['_nonce']
 	}
 
 	if ( empty( $errors ) ) {
-		if ( $_POST['user_pass'] ) {
-			$user = wp_create_user( $_POST['user_email'], $_POST['user_pass'], $_POST['user_email'] );
-		}
 
-		if ( is_wp_error( $user ) ) {
-			$errors = $user->get_error_messages();
+		$user_id = wp_create_user( $_POST['user_email'], $_POST['user_pass'], $_POST['user_email'] );
+
+		if ( is_wp_error( $user_id ) ) {
+			$errors = $user_id->get_error_messages();
 		} else {
-			wp_redirect( "/" );
+			$user = new \App\User( $user_id );
+			$user->send_verification_email();
+
+			$api_call = new \App\ApiCall();
+			$response = $api_call->add_user( $user->user_email );
+
+			add_user_meta( $user->ID, 'apiKey', $response['apiKey'] );
+
+			wp_redirect( "/profile" );
 		}
 
 	}
-
 }
 
 ?>
@@ -47,8 +53,8 @@ if ( isset( $_POST['submit-registration'] ) && wp_verify_nonce( $_POST['_nonce']
                 </div>
                 <div class="col-sm-8">
                     <div class="singin-header-btn">
-                        <p>Not a member?</p>
-                        <a href="sign-up.html" class="axil-btn btn-bg-secondary sign-up-btn">Sign Up Now</a>
+                        <p>Déja membre?</p>
+                        <a href="sign-up.html" class="axil-btn btn-bg-secondary sign-up-btn">Se connecter</a>
                     </div>
                 </div>
             </div>
@@ -56,11 +62,7 @@ if ( isset( $_POST['submit-registration'] ) && wp_verify_nonce( $_POST['_nonce']
         <!-- End Header -->
 
         <div class="row">
-            <div class="col-xl-4 col-lg-6">
-                <div class="axil-signin-banner bg_image bg_image--9">
-                    <h3 class="title">We Offer the Best Products</h3>
-                </div>
-            </div>
+			<?php get_template_part( 'template-parts/login/login-sidebar' ); ?>
             <div class="col-lg-6 offset-xl-2">
                 <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">

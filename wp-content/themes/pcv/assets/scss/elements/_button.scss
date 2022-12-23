@@ -3,6 +3,7 @@
 -----------------------*/
 
 a,
+
 button {
     &.axil-btn {
         border-radius: 6px;
@@ -10,7 +11,7 @@ button {
         line-height: var(--line-height-b1);
         font-weight: 700;
         display: inline-block;
-        padding: 16px 38px;
+        padding: 10px 28px;
         position: relative;
         transition: all 0.3s ease-in-out;
         z-index: 1;
@@ -121,7 +122,8 @@ button {
                 transform: scale(.8);
                 transition: .3s;
             }
-            &:hover {
+            &:hover,
+            &.active{
                 border-color: var(--color-primary);
                 i {
                     color: var(--color-white);
