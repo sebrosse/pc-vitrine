@@ -10,10 +10,7 @@
 <div id="wrapper" class="hfeed">
     <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
 
-	<?php if ( ! in_array( get_page_template_slug(), [
-            "page-login.php",
-        "page-registration.php",
-		"page-verify-email.php"] ) ) { ?>
+	<?php if ( ! pcv_is_login_template() ) { ?>
         <!-- Start Header -->
         <header class="header axil-header header-style-5">
             <!-- Start Mainmenu Area  -->
@@ -52,7 +49,16 @@
                         </div>
                         <div class="header-action">
                             <ul class="action-list">
-
+								<?php if ( ! is_front_page() ) { ?>
+                                    <li class="axil-search d-xl-block d-none">
+                                        <input type="search" class="placeholder product-search-input" name="search2"
+                                               id="search2" value="" maxlength="128"
+                                               placeholder="Que recherchez-vous ?" autocomplete="off">
+                                        <button type="submit" class="icon wooc-btn-search">
+                                            <i class="flaticon-magnifying-glass"></i>
+                                        </button>
+                                    </li>
+								<?php } ?>
                                 <li class="my-account">
                                     <a href="javascript:void(0)">
                                         <i class="flaticon-person"></i>
@@ -60,27 +66,32 @@
                                     <div class="my-account-dropdown">
                                         <ul>
                                             <li>
-                                                <a href="/profile" class="d-flex justify-content-between">
+                                                <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE ); ?>" class="d-flex justify-content-between">
                                                     <span>Profil</span><i class="flaticon-person"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="/profile/alerts" class="d-flex justify-content-between">
+                                                <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE_ALERTS ); ?>" class="d-flex justify-content-between">
                                                     <span>Alertes</span><i class="flaticon-warning-sign"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="/profile/favorites" class="d-flex justify-content-between">
+                                                <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE_FAVORITES ); ?>" class="d-flex justify-content-between">
                                                     <span>Favoris</span><i class="flaticon-heart"></i>
                                                 </a>
                                             </li>
+                                            <li>
+												<?php if ( ! is_user_logged_in() ) { ?>
+                                                    <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_LOGIN ); ?>"
+                                                       class="axil-btn btn-primary text-center">Connexion</a>
+												<?php } else { ?>
+                                                    <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_LOGOUT ); ?>"
+                                                       class="d-flex justify-content-between">
+                                                        <span>Déconnexion</span><i class="fal fa-sign-out"></i>
+                                                    </a>
+												<?php } ?>
+                                            </li>
                                         </ul>
-                                        <?php if(!is_user_logged_in()){?>
-                                        <a href="/login" class="axil-btn btn-bg-primary">Connexion</a>
-                                        <div class="reg-footer text-center">Pas encore membre ?
-                                            <a href="/register" class="btn-link">S'inscrire</a>
-                                        </div>
-                                        <?php } ?>
                                     </div>
                                 </li>
                                 <li class="axil-mobile-toggle">

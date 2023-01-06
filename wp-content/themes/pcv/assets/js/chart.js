@@ -29,7 +29,10 @@ jQuery(document).ready(function ($) {
                 },
                 scales: {
                     x: {
-                        ticks: {
+                        ticks:{
+                            display:false
+                        },
+                        /*ticks: {
                             callback: function (val, index, bonjour) {
                                 return index === 0 || index === (bonjour.length - 1) ? this.getLabelForValue(val) : '';
                             },
@@ -39,7 +42,7 @@ jQuery(document).ready(function ($) {
                             major: {
                                 enabled:false
                             }
-                        },
+                        },*/
                         //display: false,
                         grid: {
                             display: false

@@ -15,8 +15,8 @@ jQuery(document).ready(function ($) {
         },
 
         methods: function (e) {
+            pcvInit.focusSearchBox();
             pcvInit.w();
-            pcvInit.redirectSearchBox();
             pcvInit.waitingJs();
             pcvInit.isFavorite()
             pcvInit.addFavorite();
@@ -27,17 +27,19 @@ jQuery(document).ready(function ($) {
             pcvInit.removeAlert();
             pcvInit.headerIconToggle();
             pcvInit.stickyHeaderMenu();
+            pcvInit.sideOffcanvasToggle('.axil-search', '#header-search-modal');
+        },
+
+        focusSearchBox: function () {
+            this._body.on('click', '.product-search-input', function () {
+                setTimeout(function () {
+                    $('#autocomplete-0-input').focus();
+                },250);
+            });
         },
 
         w: function (e) {
             this._window.on('load', pcvInit.l).on('scroll', pcvInit.res)
-        },
-
-
-        redirectSearchBox: function (e) {
-            this._body.on('click', '.aa-ItemWrapper', function () {
-                window.location.href = $(this).data('url');
-            })
         },
 
         waitingJs: function (e) {
@@ -172,6 +174,40 @@ jQuery(document).ready(function ($) {
                         stickyPlaceHolder.height(0);
                     }
                 }
+            });
+        },
+        sideOffcanvasToggle: function (selectbtn, openElement) {
+
+            $('body').on('click', selectbtn, function (e) {
+                e.preventDefault();
+
+                var $this = $(this),
+                    wrapp = $this.parents('body'),
+                    wrapMask = $('<div / >').addClass('closeMask'),
+                    cartDropdown = $(openElement);
+
+                if (!(cartDropdown).hasClass('open')) {
+                    wrapp.addClass('open');
+                    cartDropdown.addClass('open');
+                    cartDropdown.parent().append(wrapMask);
+                    wrapp.css({
+                        'overflow': 'hidden'
+                    });
+
+                } else {
+                    removeSideMenu();
+                }
+
+                function removeSideMenu() {
+                    wrapp.removeAttr('style');
+                    wrapp.removeClass('open').find('.closeMask').remove();
+                    cartDropdown.removeClass('open');
+                }
+
+                $('.sidebar-close, .closeMask').on('click', function () {
+                    removeSideMenu();
+                });
+
             });
         },
     }

@@ -400,7 +400,7 @@
 -------------------------*/
 .header-search-modal {
     position: fixed;
-    top: 50%;
+    top: 150px;
     left: 50%;
     transform: translateY(-50%) translateX(-50%) scale(.8);
     opacity: 0;
@@ -442,7 +442,7 @@
         border-radius: 10px;
         padding: 40px 30px;
         width: 800px;
-        height: 575px;
+        height: auto;
         max-height: 90vh;
         overflow: auto;
         @media only screen and (max-width: 991px) {
@@ -458,7 +458,7 @@
         padding: 0;
         border-bottom: none;
         form {
-            padding-bottom: 30px;
+
         }
         .form-control {
             border: 1px solid #f1f1f1;

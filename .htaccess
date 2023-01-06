@@ -14,3 +14,18 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 # END WordPress
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^action=lostpassword
+RewriteRule ^ /demande-de-reinitialisation-de-mot-de-passe [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^action=register
+RewriteRule ^ /register [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^action=logout
+RewriteRule ^ /logout [R=301,L]
+
+redirect 301 /wp-login.php /login
+
+</IfModule>

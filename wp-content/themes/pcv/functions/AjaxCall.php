@@ -58,7 +58,7 @@ class AjaxCall {
 
 		$ApiCall  = new ApiCall();
 		$response = $ApiCall->add_favorite( $product_id );
-
+wp_send_json($response);
 		$this->handle_api_response( $response );
 	}
 
@@ -155,15 +155,14 @@ class AjaxCall {
 
 		$search = new Search();
 
-		$results = $search->search( $term,'product',10 );
-$data=[];
+		$results = $search->search( $term, 'product', 10 );
+		$data    = [];
 		foreach ( $results['ids'] as $id ) {
-			$post        = get_post($id);
+			$post        = get_post( $id );
 			$PCV_Product = new PCVProduct( $post );
 			$data[]      = [
 				'name'      => $post->post_title,
-				'label'     => $post->post_title,
-				'url'       => get_the_permalink($id),
+				'url'       => get_the_permalink( $id ),
 				'thumbnail' => pcv_get_product_featured_image_url( $post, 'thumb-list' ),
 				'price'     => $PCV_Product->get_best_price()
 			];
@@ -188,10 +187,16 @@ $data=[];
 		$data = [];
 		while ( $query->have_posts() ) {
 			$query->the_post();
+			$categories = [];
+			foreach ( ( get_the_category() ) as $category ) {
+				//this would print cat names.. You can arrange in list or whatever you want..
+				$categories[] = $category->cat_name;
+			}
 			$data[] = [
-				'name'  => get_the_title(),
-				'label' => get_the_title(),
-				'url'   => get_the_permalink()
+				'name'       => get_the_title(),
+				'url'        => get_the_permalink(),
+				'thumbnail'  => get_the_post_thumbnail_url(),
+				'categories' => implode( ", ", $categories ),
 			];
 		}
 

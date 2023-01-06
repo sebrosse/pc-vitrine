@@ -12,6 +12,10 @@ class PCVProduct {
 		$this->websites = get_field( 'websites', 'option' );
 	}
 
+	function get_product(){
+		return $this->product;
+	}
+
 	function get_offers() {
 		$offers = get_field( 'offers', $this->product->ID );
 
@@ -114,7 +118,7 @@ class PCVProduct {
 		foreach ( $price_history as $website ) {
 			foreach ( $website as $item ) {
 				$item_datetime = new \DateTime( $item['date'], new \DateTimeZone( 'Europe/Paris' ) );
-				if ( $item_datetime < $date && strtolower( $item['currency'] ) == 'eur' ) {
+				if ( $item_datetime < $date && str_contains( strtolower( $item['currency'] ), 'eur' ) ) {
 					$values[] = $item['price'];
 					break;
 				}

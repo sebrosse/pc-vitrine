@@ -9,7 +9,7 @@ if ( isset( $_GET['redirect_to'] ) ) {
 } elseif ( ! empty( $_POST['redirect_to'] ) ) {
 	$redirect_to = $_POST['redirect_to'];
 } else {
-	$redirect_to = home_url();
+	$redirect_to = pcv_get_page_link(\App\ACFSetup::OPTION_PAGE_PROFILE);
 }
 
 if ( isset( $_POST['submit-login'] ) && wp_verify_nonce( $_POST['_nonce'], 'user-login-form' ) ) {
@@ -71,8 +71,7 @@ if ( isset( $_POST['submit-login'] ) && wp_verify_nonce( $_POST['_nonce'], 'user
                             <div class="form-group">
                                 <label for="user_login">Adresse e-mail</label>
                                 <input type="text" name="user_email" id="user_email" autocomplete="username"
-                                       class="form-control" value="<?php echo $_POST['user_email']; ?>"
-                                       size="20">
+                                       class="form-control" value="<?php echo $_POST['user_email']; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="user_pass">Mot de passe</label>
@@ -88,7 +87,7 @@ if ( isset( $_POST['submit-login'] ) && wp_verify_nonce( $_POST['_nonce'], 'user
                                 <button type="submit" name="submit-login" class="axil-btn btn-bg-primary submit-btn">Se
                                     connecter
                                 </button>
-
+                                <a href="<?php echo pcv_get_page_link(\App\ACFSetup::OPTION_PAGE_REQUEST_PASSWORD_RESET);?>" class="forgot-btn">Mot de passe oublié?</a>
                             </div>
                         </form>
                     </div>

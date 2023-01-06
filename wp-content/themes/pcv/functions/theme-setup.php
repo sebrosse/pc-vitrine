@@ -1,7 +1,5 @@
 <?php
 
-register_nav_menu( 'main-menu', 'Main menu' );
-
 add_image_size( 'thumb-list', 80, 80, true );
 
 add_filter( 'use_block_editor_for_post', '__return_false', 10 );
@@ -14,12 +12,15 @@ function pcv_setup() {
 	add_theme_support( 'responsive-embeds' );
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'html5', array( 'search-form', 'navigation-widgets' ) );
-	add_theme_support( 'woocommerce' );
+	//add_theme_support( 'woocommerce' );
 	global $content_width;
 	if ( ! isset( $content_width ) ) {
 		$content_width = 1920;
 	}
-	register_nav_menus( array( 'main-menu' => esc_html__( 'Main Menu', 'pcv' ) ) );
+	register_nav_menus( [
+		'main-menu' => esc_html__( 'Main Menu', 'pcv' ),
+		'footer-menu' => esc_html__( 'Footer Menu', 'pcv' )
+	] );
 }
 
 add_action( 'admin_init', 'pcv_notice_dismissed' );
@@ -206,3 +207,50 @@ function pcv_get_product_featured_image_url( WP_Post $product, $size = 'full' ) 
 		return $image['sizes'][ $size ];
 	}
 }
+
+function pcv_get_page_link( string $page ) {
+	$page = get_field( $page, 'option' );
+
+	if ( $page ) {
+		return get_permalink( $page->ID );
+	}
+
+	return false;
+}
+
+function pcv_is_login_template() {
+	return in_array( get_page_template_slug(), [
+		"page-login.php",
+		"page-registration.php",
+		"page-verify-email.php",
+		"page-request-password-reset.php",
+		"page-password-reset.php"
+	] );
+}
+
+function pcv_redirect_loggedin_user_from_login() {
+	if ( is_user_logged_in() && pcv_is_login_template() ) {
+		wp_redirect( pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE ) );
+	}
+}
+
+add_action( 'template_redirect', 'pcv_redirect_loggedin_user_from_login' );
+
+function pcv_disable_dashboard_access_for_users() {
+	$current_user = wp_get_current_user();
+
+	if ( is_admin() && ! $current_user->has_cap( 'administrator' ) ) {
+		wp_redirect( site_url() );
+	}
+}
+
+add_action( 'admin_init', 'pcv_disable_dashboard_access_for_users' );
+
+
+function pcv_remove_admin_bar() {
+	if ( ! current_user_can( 'administrator' ) && ! is_admin() ) {
+		show_admin_bar( false );
+	}
+}
+
+add_action( 'after_setup_theme', 'pcv_remove_admin_bar' );

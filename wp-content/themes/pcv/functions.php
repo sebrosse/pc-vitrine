@@ -15,3 +15,4 @@ require_once( THEME_ROOT_PATH . "/functions/AjaxCall.php" );
 require_once( THEME_ROOT_PATH . "/functions/FormattingHelper.php" );
 require_once( THEME_ROOT_PATH . "/functions/User.php" );
 require_once( THEME_ROOT_PATH . "/functions/Search.php" );
+require_once( THEME_ROOT_PATH . "/functions/ImportAction.php" );

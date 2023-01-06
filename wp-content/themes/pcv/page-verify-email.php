@@ -7,7 +7,7 @@
 $email = $_GET['email'];
 $token = $_GET['token'];
 
-$token_passed_check = \App\User::check_token( $email, $token );
+$token_passed_check = \App\User::check_token( $email, $token,\App\User::KEY_VERIFICATION_TOKEN );
 
 if ( $token_passed_check ) {
 	\App\User::verify_user( $email );

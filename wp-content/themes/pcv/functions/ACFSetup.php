@@ -5,10 +5,15 @@ namespace App;
 class ACFSetup {
 
 	const OPTION_PAGE_PROFILE = 'page_profile';
+	const OPTION_PAGE_PROFILE_ALERTS = 'page_profile_alerts';
+	const OPTION_PAGE_PROFILE_FAVORITES = 'page_profile_favorites';
 	const OPTION_PAGE_LOGIN = 'page_login';
+	const OPTION_PAGE_LOGOUT = 'page_logout';
 	const OPTION_PAGE_REGISTER = 'page_register';
 	const OPTION_PAGE_VERIFY_EMAIL = 'page_verify_email';
 	const OPTION_PAGE_RESEND_VERIFICATION_EMAIL = 'page_resend_verification_email';
+	const OPTION_PAGE_REQUEST_PASSWORD_RESET = 'page_request_password_reset';
+	const OPTION_PAGE_PASSWORD_RESET = 'page_password_reset';
 
 	function __construct() {
 		$this->define_options_pages();
@@ -62,10 +67,16 @@ class ACFSetup {
 				'menu_title'  => 'Email',
 				'parent_slug' => 'theme-settings',
 			) );
+
+			acf_add_options_sub_page( array(
+				'page_title'  => 'Social',
+				'menu_title'  => 'Social',
+				'parent_slug' => 'theme-settings',
+			) );
 		}
 	}
 
-	public function acf_website_choices( $field) {
+	public function acf_website_choices( $field ) {
 
 		// reset choices
 		$field['choices'] = array();

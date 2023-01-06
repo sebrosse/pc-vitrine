@@ -1,49 +1,64 @@
+<?php
+$password_changed = false;
+
+if ( isset( $_POST['change-password-btn'] ) ) {
+
+	$current_password    = $_POST['current_password'];
+	$new_password        = $_POST['new_password'];
+	$repeat_new_password = $_POST['repeat_new_password'];
+
+	if ( $check_password = wp_check_password( $current_password, $user->user_pass, $user->ID ) ) {
+
+		$password_validate = \App\User::validate_password( $new_password, $repeat_new_password );
+
+		if ( $password_validate['success'] ) {
+			wp_set_password( $new_password, $user->ID );
+			$password_changed = true;
+		}
+
+	};
+
+}
+?>
+
 <div class="col-lg-9">
     <div class="axil-dashboard-account">
-        <form class="account-details-form">
+        <form class="account-details-form" method="post">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" value="Annie">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" value="Mario">
-                    </div>
-                </div>
                 <div class="col-12">
-                    <div class="form-group mb--40">
-                        <label>Country/ Region</label>
-                        <select class="select2">
-                            <option value="1">United Kindom (UK)</option>
-                            <option value="1">United States (USA)</option>
-                            <option value="1">United Arab Emirates (UAE)</option>
-                            <option value="1">Australia</option>
-                        </select>
-                        <p class="b3 mt--10">This will be how your name will be
-                            displayed in the account section and in reviews</p>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <h5 class="title">Password Change</h5>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control"
-                               value="123456789101112131415">
+                        <label>Email</label>
+                        <input type="text" class="form-control" value="<?php echo $user->user_email; ?>" disabled>
                     </div>
+                    <h5 class="title">Modifier le mot de passe</h5>
+					<?php if ( isset( $password_validate )
+					           && ! $password_validate['success']
+					           && ! $password_changed ) { ?>
+                        <div class="alert alert-warning mb--35">
+							<?php echo $password_validate['message']; ?>
+                        </div>
+					<?php } ?>
+					<?php if ( $password_changed ) { ?>
+                        <div class="alert alert-success mb--35">
+                            le mot de passe a été modifié avec succès.
+                        </div>
+					<?php } ?>
                     <div class="form-group">
-                        <label>New Password</label>
-                        <input type="password" class="form-control">
+                        <label>Mot de passe actuel</label>
+                        <input type="password" class="form-control" name="current_password">
                     </div>
                     <div class="form-group">
-                        <label>Confirm New Password</label>
-                        <input type="password" class="form-control">
+                        <label>Nouveau mot de passe</label>
+                        <input type="password" class="form-control" name="new_password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirmer le nouveau mot de passe</label>
+                        <input type="password" class="form-control" name="repeat_new_password">
                     </div>
                     <div class="form-group mb--0">
-                        <input type="submit" class="axil-btn" value="Save Changes">
+                        <button type="submit" class="axil-btn btn-bg-primary submit-btn" name="change-password-btn">
+                            Enregistrer
+                        </button>
                     </div>
                 </div>
             </div>

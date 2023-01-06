@@ -15,7 +15,7 @@ $alerts  = $apiCall->alerts();
             </tr>
             </thead>
             <tbody>
-			<?php foreach ( $alerts as $alert ) {
+			<?php foreach ( $alerts['content'] as $alert ) {
 
 				$posts = get_posts( array(
 					'numberposts' => 1,

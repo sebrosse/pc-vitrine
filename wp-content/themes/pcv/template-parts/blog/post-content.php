@@ -22,11 +22,12 @@
                             <div class="post-details__social-share">
                                 <span class="share-on-text">Partager:</span>
                                 <div class="social-share">
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    <a href="#"><i class="fab fa-discord"></i></a>
+                                    <a href="<?php echo 'https://www.facebook.com/sharer.php?u='.get_permalink();?>" target="_blank">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="<?php echo 'https://twitter.com/share?url='.get_permalink().'&text='.esc_attr(get_the_title());?>">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
                                 </div>
 
                             </div>

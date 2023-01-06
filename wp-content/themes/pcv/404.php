@@ -1,11 +1,21 @@
 <?php get_header(); ?>
-<article id="post-0" class="post not-found">
-<header class="header">
-<h1 class="entry-title" itemprop="name"><?php esc_html_e( 'Not Found', 'blankslate' ); ?></h1>
-</header>
-<div class="entry-content" itemprop="mainContentOfPage">
-<p><?php esc_html_e( 'Nothing found for the requested page. Try a search instead?', 'blankslate' ); ?></p>
-<?php get_search_form(); ?>
-</div>
-</article>
+    <section class="error-page onepage-screen-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="content sal-animate" data-sal="slide-up" data-sal-duration="800" data-sal-delay="400">
+                        <span class="title-highlighter highlighter-secondary"> <i class="fal fa-exclamation-circle"></i> Houston, on a un problème</span>
+                        <h1 class="title">Page introuvable</h1>
+                        <p>On dirait que la page que vous cherchez n'existe pas ou bien a été déplacée.</p>
+                        <a href="index.html" class="axil-btn btn-bg-secondary right-icon">Retour à l'accueil <i class="fal fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="thumbnail sal-animate" data-sal="zoom-in" data-sal-duration="800" data-sal-delay="400">
+                        <img src="<?php echo THEME_ROOT_URI.'/assets/images/404.png';?>" alt="404">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <?php get_footer(); ?>

@@ -49,12 +49,14 @@ if ( isset( $_POST['submit-registration'] ) && wp_verify_nonce( $_POST['_nonce']
         <div class="signin-header">
             <div class="row align-items-center">
                 <div class="col-sm-4">
-                    <a href="index.html" class="site-logo"><img src="./assets/images/logo/logo.png" alt="logo"></a>
+                    <a href="/" class="site-logo">
+                        <img src="<?php the_field('logo','option');?>" alt="logo">
+                    </a>
                 </div>
                 <div class="col-sm-8">
                     <div class="singin-header-btn">
                         <p>Déja membre?</p>
-                        <a href="sign-up.html" class="axil-btn btn-bg-secondary sign-up-btn">Se connecter</a>
+                        <a href="<?php echo get_permalink(get_field(\App\ACFSetup::OPTION_PAGE_LOGIN,'option')->ID);?>" class="axil-btn btn-bg-secondary sign-up-btn">Se connecter</a>
                     </div>
                 </div>
             </div>
