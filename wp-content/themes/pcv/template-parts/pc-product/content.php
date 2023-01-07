@@ -68,7 +68,7 @@ $price_variation = get_field( 'price_variation' );
 
                                 <hr>
 
-                                <div class="product-action-wrapper d-flex-center w-100 justify-content-between">
+                                <div class="product-action-wrapper w-100 justify-content-between">
                                     <div class="alert-title">
                                         <h5 class="mb--0">Définir une alerte</h5>
                                         <span class="text-muted">Vous serez notifié si le prix baisse</span>
@@ -129,7 +129,7 @@ $price_variation = get_field( 'price_variation' );
 <div class="axil-product-area bg-vista-white axil-section-gap pb--50 pb_sm--30">
     <div class="container">
         <div class="row">
-            <div class="offset-lg-1 col-10">
+            <div class="offset-lg-1 col-lg-10">
 				<?php $chart_data = get_field( 'chart_data' ); ?>
                 <h3 class="mb--0 d-flex justify-content-between">
                     <div>Evolution du prix</div>

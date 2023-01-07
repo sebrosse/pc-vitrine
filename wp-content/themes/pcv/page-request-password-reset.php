@@ -25,7 +25,7 @@ if ( isset( $_POST['submit-reset-request'] ) && wp_verify_nonce( $_POST['_nonce'
             <div class="row align-items-center">
                 <div class="col-sm-4">
                     <a href="/" class="site-logo">
-                        <img src="<?php the_field( 'logo', 'option' ); ?>" alt="logo">
+	                    <?php include THEME_ROOT_PATH . '/template-parts/login/logo.php'; ?>
                     </a>
                 </div>
                 <div class="col-sm-8">

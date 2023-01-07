@@ -19,8 +19,8 @@
                 <div class="container">
                     <div class="header-navbar">
                         <div class="header-brand">
-                            <a href="<?php echo site_url(); ?>" class="logo logo-dark">
-                                <img src="<?php the_field( 'logo', 'option' ); ?>" alt="Site Logo">
+                            <a href="<?php echo site_url(); ?>" class="logo">
+                                <img src="<?php the_field( 'logo_dark', 'option' ); ?>" alt="Site Logo">
                             </a>
                         </div>
                         <div class="header-main-nav">
@@ -30,7 +30,7 @@
                                 </button>
                                 <div class="mobile-nav-brand">
                                     <a href="<?php echo site_url(); ?>" class="logo">
-                                        <img src="<?php the_field( 'logo', 'option' ); ?>" alt="Site Logo">
+                                        <img src="<?php the_field( 'logo_dark', 'option' ); ?>" alt="Site Logo">
                                     </a>
                                 </div>
 								<?php
@@ -50,7 +50,7 @@
                         <div class="header-action">
                             <ul class="action-list">
 								<?php if ( ! is_front_page() ) { ?>
-                                    <li class="axil-search d-xl-block d-none">
+                                    <li class="axil-search">
                                         <input type="search" class="placeholder product-search-input" name="search2"
                                                id="search2" value="" maxlength="128"
                                                placeholder="Que recherchez-vous ?" autocomplete="off">

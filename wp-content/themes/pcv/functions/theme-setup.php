@@ -18,7 +18,7 @@ function pcv_setup() {
 		$content_width = 1920;
 	}
 	register_nav_menus( [
-		'main-menu' => esc_html__( 'Main Menu', 'pcv' ),
+		'main-menu'   => esc_html__( 'Main Menu', 'pcv' ),
 		'footer-menu' => esc_html__( 'Footer Menu', 'pcv' )
 	] );
 }
@@ -239,7 +239,7 @@ add_action( 'template_redirect', 'pcv_redirect_loggedin_user_from_login' );
 function pcv_disable_dashboard_access_for_users() {
 	$current_user = wp_get_current_user();
 
-	if ( is_admin() && ! $current_user->has_cap( 'administrator' ) ) {
+	if ( is_admin() && ! $current_user->has_cap( 'administrator' ) && !wp_doing_ajax() ) {
 		wp_redirect( site_url() );
 	}
 }

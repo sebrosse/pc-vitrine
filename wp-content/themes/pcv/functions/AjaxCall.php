@@ -58,7 +58,7 @@ class AjaxCall {
 
 		$ApiCall  = new ApiCall();
 		$response = $ApiCall->add_favorite( $product_id );
-wp_send_json($response);
+
 		$this->handle_api_response( $response );
 	}
 

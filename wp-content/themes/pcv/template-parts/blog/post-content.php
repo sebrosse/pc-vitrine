@@ -25,7 +25,7 @@
                                     <a href="<?php echo 'https://www.facebook.com/sharer.php?u='.get_permalink();?>" target="_blank">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
-                                    <a href="<?php echo 'https://twitter.com/share?url='.get_permalink().'&text='.esc_attr(get_the_title());?>">
+                                    <a href="<?php echo 'https://twitter.com/share?url='.get_permalink().'&text='.esc_attr(get_the_title());?>" target="_blank">
                                         <i class="fab fa-twitter"></i>
                                     </a>
                                 </div>
