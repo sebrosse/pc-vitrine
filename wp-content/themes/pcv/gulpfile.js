@@ -21,7 +21,7 @@ var js_src = [
 ];
 
 var css_src = [
-    'https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap',
+    //'https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap',
     'assets/css/vendor/bootstrap.min.css',
     'assets/css/vendor/font-awesome.css',
     'assets/css/vendor/flaticon/flaticon.css',

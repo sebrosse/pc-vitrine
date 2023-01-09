@@ -5,6 +5,13 @@ add_image_size( 'thumb-list', 80, 80, true );
 
 add_filter( 'use_block_editor_for_post', '__return_false', 10 );
 
+function pcv_remove_wp_block_library_css(){
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+	wp_dequeue_style( 'wc-blocks-style' ); // Remove WooCommerce block CSS
+}
+add_action( 'wp_enqueue_scripts', 'pcv_remove_wp_block_library_css', 100 );
+
 add_action( 'after_setup_theme', 'pcv_setup' );
 function pcv_setup() {
 	load_theme_textdomain( 'pcv', get_template_directory() . '/languages' );
@@ -126,16 +133,16 @@ function pcv_widgets_init() {
 
 function pcv_enqueue_style() {
 	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap', false );
-	wp_enqueue_style( 'bootstrap', THEME_ROOT_URI . '/assets/css/vendor/bootstrap.min.css' );
-	wp_enqueue_style( 'font-awesome', THEME_ROOT_URI . '/assets/css/vendor/font-awesome.css' );
-	wp_enqueue_style( 'flaticon', THEME_ROOT_URI . '/assets/css/vendor/flaticon/flaticon.css' );
-	wp_enqueue_style( 'slick', THEME_ROOT_URI . '/assets/css/vendor/slick.css' );
-	wp_enqueue_style( 'slick-theme', THEME_ROOT_URI . '/assets/css/vendor/slick-theme.css' );
+	//wp_enqueue_style( 'bootstrap', THEME_ROOT_URI . '/assets/css/vendor/bootstrap.min.css' );
+	//wp_enqueue_style( 'font-awesome', THEME_ROOT_URI . '/assets/css/vendor/font-awesome.css' );
+	//wp_enqueue_style( 'flaticon', THEME_ROOT_URI . '/assets/css/vendor/flaticon/flaticon.css' );
+	//wp_enqueue_style( 'slick', THEME_ROOT_URI . '/assets/css/vendor/slick.css' );
+	//wp_enqueue_style( 'slick-theme', THEME_ROOT_URI . '/assets/css/vendor/slick-theme.css' );
 	//wp_enqueue_style( 'jquery-ui.min', THEME_ROOT_URI . '/assets/css/vendor/jquery-ui.min.css' );
 	//wp_enqueue_style( 'sal', THEME_ROOT_URI . '/assets/css/vendor/sal.css' );
 	//wp_enqueue_style( 'magnific-popup', THEME_ROOT_URI . '/assets/css/vendor/magnific-popup.css' );
-	wp_enqueue_style( 'autocomplete', THEME_ROOT_URI . '/assets/css/vendor/autocomplete-theme-classic.css' );
-	wp_enqueue_style( 'base', THEME_ROOT_URI . '/assets/css/vendor/base.css' );
+	//wp_enqueue_style( 'autocomplete', THEME_ROOT_URI . '/assets/css/vendor/autocomplete-theme-classic.css' );
+	//wp_enqueue_style( 'base', THEME_ROOT_URI . '/assets/css/vendor/base.css' );
 	wp_enqueue_style( 'style', THEME_ROOT_URI . '/assets/dist/css/app.min.css' );
 }
 
