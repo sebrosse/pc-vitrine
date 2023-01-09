@@ -5,7 +5,7 @@ $PCV_Product = new \App\PCVProduct( $product );
 <div class="product-mini axil-product product-style-one mb--30 col-lg-4">
     <div class="thumbnail">
         <a href="<?php echo get_permalink( $product->ID ); ?>">
-            <img src="<?php echo pcv_get_product_featured_image_url( $product ); ?>"
+            <img src="<?php echo pcv_get_product_featured_image_url( $product,'mini-product-thumb' ); ?>"
                  alt="<?php echo esc_attr( get_the_title( $product->ID ) ); ?>">
         </a>
     </div>

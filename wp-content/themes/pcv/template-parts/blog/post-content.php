@@ -4,7 +4,7 @@
             <div class="content-block">
                 <div class="inner">
                     <div class="post-thumbnail">
-						<?php the_post_thumbnail( 'full' ); ?>
+						<?php the_post_thumbnail( 'hero' ); ?>
                     </div>
                     <!-- End .thumbnail -->
                 </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <!-- End .single-post -->
-    <div class="post-single-wrapper position-relative">
+    <div class="post-single-wrapper position-relative mb--50 mb_sm--30">
         <div class="container">
             <div class="row">
                 <div class="col-lg-1">
@@ -38,9 +38,9 @@
                     <div class="post-heading">
                         <h1 class="title h2"><?php the_title(); ?></h1>
                         <div class="axil-post-meta">
-                            <div class="post-author-avatar">
+                            <!--<div class="post-author-avatar">
                                 <?php get_avatar( get_the_author_meta( 'ID' ), 96 );?>
-                            </div>
+                            </div>-->
                             <div class="post-meta-content">
                                 <h6 class="author-title">
                                     <a href="#"><?php the_author();?></a>

@@ -18,7 +18,7 @@ if ( isset( $_POST['submit-login'] ) && wp_verify_nonce( $_POST['_nonce'], 'user
 	$creds['user_login']    = $_POST['user_email'];
 	$creds['user_password'] = $_POST['user_pass'];
 	$creds['remember']      = true;
-	$user                   = wp_signon( $creds, false );
+	$user                   = wp_signon( $creds, true );
 	if ( is_wp_error( $user ) ) {
 		$errors = $user->get_error_messages();
 	} else {

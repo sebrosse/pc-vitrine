@@ -7,21 +7,34 @@ var concat = require('gulp-concat');
 var minfycss = require('gulp-minify-css');
 var gutil = require('gulp-util');
 
+var js_src = [
+    'assets/js/vendor/modernizr.min.js',
+    'assets/js/vendor/jquery.js',
+    'assets/js/vendor/popper.min.js',
+    'assets/js/vendor/bootstrap.min.js',
+    'assets/js/vendor/slick.min.js',
+    'assets/js/vendor/autocomplete-js.js',
+    'assets/js/vendor/chart.min.js',
+    'assets/js/chart.js',
+    'assets/js/scripts.js',
+    'assets/js/search.js'
+];
+
+var css_src = [
+    'https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap',
+    'assets/css/vendor/bootstrap.min.css',
+    'assets/css/vendor/font-awesome.css',
+    'assets/css/vendor/flaticon/flaticon.css',
+    'assets/css/vendor/slick.css',
+    'assets/css/vendor/slick-theme.css',
+    'assets/css/vendor/autocomplete-theme-classic.css',
+    'assets/css/vendor/base.css',
+    'assets/scss/style.scss'
+];
+
 // My js files
 gulpfile.task('scripts', function () {
-    var js_src = js_src = [
-        'assets/js/jquery-3.4.0.min.js',
-        'assets/js/tarteaucitron.js',
-        'assets/js/jquery.touchSwipe.min.js',
-        'assets/js/scrolloverflow.js',
-        'assets/js/fullpage.extensions.min.js',
-        'assets/js/infinite-scroll.pkgd.min.js',
-        'assets/js/simplebar.min.js',
-        'assets/js/slick.min.js',
-        'assets/js/aos.js',
-        'assets/js/lazysizes.min.js',
-        'assets/js/scripts.js'];
-    var js_dest = 'dist/js';
+    var js_dest = 'assets/dist/js';
     return gulpfile.src(js_src)
         .pipe(concat('app.min.js'))
         //.pipe(striplog())
@@ -32,7 +45,6 @@ gulpfile.task('scripts', function () {
 
 // My css files
 gulpfile.task('styles', function () {
-    var css_src = 'assets/scss/style.scss';
     var css_dest = 'assets/dist/css';
 
     // Concat and minify all the css
@@ -51,6 +63,6 @@ gulpfile.task('clean', function () {
 });
 
 gulpfile.task('watch', function () {
-    gulpfile.watch('assets/scss/*/*.scss', gulpfile.series('styles'));
-    //gulpfile.watch('assets/js/*.js', gulpfile.series('scripts'));
+    gulpfile.watch(css_src, gulpfile.series('styles'));
+    gulpfile.watch(js_src, gulpfile.series('scripts'));
 });

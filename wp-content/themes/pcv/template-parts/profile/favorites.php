@@ -1,9 +1,6 @@
 <?php
 $apiCall   = new \App\ApiCall();
 $favorites = $apiCall->favorites();
-echo'<pre>';
-var_dump($favorites);
-echo '</pre>';
 ?>
 <div class="axil-dashboard-order">
     <div class="table-responsive">
@@ -24,7 +21,7 @@ echo '</pre>';
 					'meta_key'    => 'pc_id',
 					'meta_value'  => $favorite['product']['id']
 				) );
-                var_dump($favorite['product']['id']);
+
 				$permalink = get_permalink( $posts[0]->ID );
 				$title     = get_the_title( $posts[0]->ID );
 				?>
