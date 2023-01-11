@@ -45,8 +45,12 @@ $price_variation = get_field( 'price_variation' );
 										$hide_favorite_label = 0;
 										include( THEME_ROOT_PATH . '/template-parts/ajax/favorite.php' ); ?>
                                     </div>
-									<?php foreach ( $PCV_Product->get_offers() as $offer ) { ?>
-                                        <a href="<?php echo $offer['url']; ?>"
+									<?php foreach ( $PCV_Product->get_offers() as $offer ) {
+										$EncryptionHelper   = new \App\EncryptionHelper();
+										$encrypted_offer_id = $EncryptionHelper->encrypt( $offer['id'] );
+										$offer_url          = pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_REDIRECT ) . $encrypted_offer_id;
+										?>
+                                        <a href="<?php echo $offer_url; ?>" target="_blank"
                                            class="btn axil-btn btn-bg-white w-100 mb--15 justify-content-between d-flex">
                                             <span>
                                                 <?php

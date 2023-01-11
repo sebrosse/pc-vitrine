@@ -4,6 +4,12 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>"/>
     <meta name="viewport" content="width=device-width"/>
 	<?php wp_head(); ?>
+    <script>
+		<?php the_field( 'custom_scripts', 'option' );?>
+    </script>
+    <style>
+        <?php the_field( 'custom_styles', 'option' );?>
+    </style>
 </head>
 <body <?php body_class( 'sticky-header' ); ?>>
 <?php wp_body_open(); ?>
@@ -66,17 +72,20 @@
                                     <div class="my-account-dropdown">
                                         <ul>
                                             <li>
-                                                <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE ); ?>" class="d-flex justify-content-between">
+                                                <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE ); ?>"
+                                                   class="d-flex justify-content-between">
                                                     <span>Profil</span><i class="flaticon-person"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE_ALERTS ); ?>" class="d-flex justify-content-between">
+                                                <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE_ALERTS ); ?>"
+                                                   class="d-flex justify-content-between">
                                                     <span>Alertes</span><i class="flaticon-warning-sign"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE_FAVORITES ); ?>" class="d-flex justify-content-between">
+                                                <a href="<?php echo pcv_get_page_link( \App\ACFSetup::OPTION_PAGE_PROFILE_FAVORITES ); ?>"
+                                                   class="d-flex justify-content-between">
                                                     <span>Favoris</span><i class="flaticon-heart"></i>
                                                 </a>
                                             </li>

@@ -87,10 +87,6 @@ if ( ! function_exists( 'pcv_wp_body_open' ) ) {
 		do_action( 'wp_body_open' );
 	}
 }
-add_action( 'wp_body_open', 'pcv_skip_link', 5 );
-function pcv_skip_link() {
-	echo '<a href="#content" class="skip-link screen-reader-text">' . esc_html__( 'Skip to the content', 'pcv' ) . '</a>';
-}
 
 add_filter( 'the_content_more_link', 'pcv_read_more_link' );
 function pcv_read_more_link() {
@@ -262,3 +258,17 @@ function pcv_remove_admin_bar() {
 }
 
 add_action( 'after_setup_theme', 'pcv_remove_admin_bar' );
+
+function pcv_rewrite_url() {
+
+	add_rewrite_tag( '%pid%','([^&]+)' );
+
+	$page_redirect_id=get_field(\App\ACFSetup::OPTION_PAGE_REDIRECT,'option')->ID;
+
+	add_rewrite_rule(
+		'go/([^/]+)',
+		'index.php?post_type=page&page_id='.$page_redirect_id.'&pid=$matches[1]',
+		'top'
+	);
+}
+add_action( 'init', 'pcv_rewrite_url' );

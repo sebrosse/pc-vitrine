@@ -134,4 +134,15 @@ class ApiCall {
 
 		return $this->call( $this::SCOPE_USER, $endpoint, $this::METHOD_GET, [] );
 	}
+
+	public function add_click( $page_id, $showcase_id, $ip_address, $user_agent ) {
+		$endpoint = get_field( 'add_click_endpoint', 'option' );
+
+		return $this->call( $this::SCOPE_ADMIN, $endpoint, $this::METHOD_POST, [
+			'page'      => '/api/pages/' . $page_id,
+			'showcase'  => '/api/showcases/' . $showcase_id,
+			'ipAddress' => $ip_address,
+			'userAgent' => $user_agent
+		] );
+	}
 }
