@@ -8,7 +8,9 @@
 							$breadcrumbs = yoast_breadcrumb( '<ul class="axil-breadcrumb"><li>', '</li></ul>', false );
 							echo str_replace( '»', '<li class="separator"></li></li><li>', $breadcrumbs );
 						} ?>
-                        <h1 class="title"><?php echo $wp_query->post->post_title; ?></h1>
+                        <h1 class="title"><?php
+                         
+                            echo single_post_title(); ?></h1>
                     </div>
                 </div>
             </div>

@@ -46,9 +46,9 @@
                                     <a href="#"><?php the_author();?></a>
                                 </h6>
                                 <ul class="post-meta-list">
-                                    <li>Publié le:&nbsp;<?php echo get_post_time( 'd/m/Y à H:i' ) ?></li>
+                                    <li>Publié le:&nbsp;<?php echo get_post_time( 'd/m/Y' ) ?></li>
 									<?php if ( ( get_post_modified_time() - get_post_time() ) > 60 * 60 * 24 ) { ?>
-                                        <li>Mis à jour le:<?php echo get_post_modified_time('d/m/Y à H:i') ?></li>
+                                        <li>Mis à jour le: <?php echo get_post_modified_time('d/m/Y') ?></li>
 									<?php } ?>
                                 </ul>
                             </div>

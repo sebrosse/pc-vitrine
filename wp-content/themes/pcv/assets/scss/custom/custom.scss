@@ -109,19 +109,19 @@
   }
 }
 
-.wpcf7-form p{
+.wpcf7-form p {
   display: inline-block;
-  width: 100%!important;
-  margin-bottom: 0!important;
+  width: 100% !important;
+  margin-bottom: 0 !important;
 }
 
-.breadcrumb_last{
+.breadcrumb_last {
   color: var(--color-primary);
 }
 
 .main-slider-content {
 
-  .title{
+  .title {
     font-size: 48px;
   }
 
@@ -130,35 +130,35 @@
   }
 
   .tagline,
-  .title{
+  .title {
     color: white;
-    text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
   }
 
 }
 
-.home-hero{
-  height:calc( 100vh - 80px);
+.home-hero {
+  height: calc(100vh - 80px);
 }
 
-#menu-footer-menu{
+#menu-footer-menu {
   padding: 0;
   margin: 0;
 
-  li{
+  li {
     display: inline-block;
 
 
-    &:not(:last-child){
-      &:after{
-        content:'-';
+    &:not(:last-child) {
+      &:after {
+        content: '-';
         margin: 0 5px;
       }
     }
 
 
-    a{
-      color: var(--color-body)!important;
+    a {
+      color: var(--color-body) !important;
       font-weight: 500;
       font-size: 14px;
     }
@@ -166,43 +166,88 @@
 }
 
 @media (max-width: 479px) {
-  .header-action .axil-search input{
-    max-width:170px!important;
+  .header-action .axil-search input {
+    max-width: 170px !important;
   }
 }
 
 
-.header-brand{
-  img{
+.header-brand {
+  img {
     height: 70px;
   }
 }
 
-.axil-signin-area .site-logo{
-  img{
+.axil-signin-area .site-logo {
+  img {
     height: 70px;
   }
 
-  .logo-light{
-    display: inline-block!important;
+  .logo-light {
+    display: inline-block !important;
   }
 
-  .logo-dark{
-    display: none!important;
+  .logo-dark {
+    display: none !important;
   }
-  
-  @media (max-width: 990px)  {
-    .logo-dark{
-      display: inline-block!important;
+
+  @media (max-width: 990px) {
+    .logo-dark {
+      display: inline-block !important;
     }
-    .logo-light{
-      display: none!important;
+    .logo-light {
+      display: none !important;
     }
   }
 }
 
-.mobile-nav-brand{
-  img{
+.mobile-nav-brand {
+  img {
     height: 50px;
+  }
+}
+
+.alignright,
+.alignleft {
+  margin-bottom: 15px;
+  width: 100%;
+  float: none;
+
+  img{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100%;
+  }
+}
+
+.alignleft {
+  @media (min-width: 768px) {
+    margin-right: 15px;
+    float: left;
+  }
+}
+
+.alignright {
+  @media (min-width: 768px) {
+    margin-left: 15px;
+    float: right;
+  }
+}
+
+.wp-caption-text{
+  background: whitesmoke;
+  padding: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 13px;
+  color: #333;
+  text-align: center;
+}
+
+.wpcf7-submit{
+  background: var(--color-primary);
+
+  &:hover{
+    color: white!important;
   }
 }

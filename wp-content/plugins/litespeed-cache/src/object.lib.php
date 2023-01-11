@@ -279,12 +279,14 @@ function wp_cache_flush() {
  *
  * @since 5.4
  *
- * @see WP_Object_Cache::flush()
+ * @see WP_Object_Cache::flush_runtime()
  *
  * @return bool True on success, false on failure.
  */
 function wp_cache_flush_runtime() {
-	return wp_cache_flush();
+	global $wp_object_cache;
+
+	return $wp_object_cache->flush_runtime();
 }
 
 /**
@@ -324,9 +326,9 @@ function wp_cache_supports( $feature ) {
 		case 'get_multiple':
 		case 'delete_multiple':
 		case 'flush_runtime':
-		case 'flush_group':
 			return true;
 
+		case 'flush_group':
 		default:
 			return false;
 	}
@@ -912,7 +914,7 @@ class WP_Object_Cache {
 	 * @return int|false The item's new value on success, false on failure.
 	 */
 	public function incr( $key, $offset = 1, $group = 'default' ) {
-		return incr_desr( $key, $offset, $group, true );
+		return $this->incr_desr( $key, $offset, $group, true );
 	}
 
 	/**
@@ -927,7 +929,7 @@ class WP_Object_Cache {
 	 * @return int|false The item's new value on success, false on failure.
 	 */
 	public function decr( $key, $offset = 1, $group = 'default' ) {
-		return incr_desr( $key, $offset, $group, false );
+		return $this->incr_desr( $key, $offset, $group, false );
 	}
 
 	/**
@@ -982,11 +984,39 @@ class WP_Object_Cache {
 	 * @return true Always returns true.
 	 */
 	public function flush() {
-		$this->_cache = array();
-		$this->_cache_404 = array();
-// error_log("oc: flush " );
+		$this->flush_runtime();
 
 		$this->_object_cache->flush();
+
+		return true;
+	}
+
+	/**
+	 * Removes all cache items from the in-memory runtime cache.
+	 *
+	 * @since 5.4
+	 * @access public
+	 *
+	 * @return true Always returns true.
+	 */
+	public function flush_runtime() {
+		$this->_cache = array();
+		$this->_cache_404 = array();
+
+		return true;
+	}
+
+	/**
+	 * Removes all cache items in a group.
+	 *
+	 * @since 5.4
+	 * @access public
+	 *
+	 * @param string $group Name of group to remove from cache.
+	 * @return true Always returns true.
+	 */
+	public function flush_group( $group ) {
+		// unset( $this->cache[ $group ] );
 
 		return true;
 	}
